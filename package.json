@@ -25,9 +25,6 @@
   ],
   "author": "Nuvix",
   "license": "BSD-3-Clause",
-  "dependencies": {
-    "perf_hooks": "^1.0.0"
-  },
   "devDependencies": {
     "typescript": "^5.4.0",
     "eslint": "^8.55.0",
