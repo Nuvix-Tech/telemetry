@@ -1,0 +1,37 @@
+{
+  "name": "@nuvix/telemetry",
+  "version": "1.0.0",
+  "description": "A lightweight and extensible telemetry system with support for multiple exporters and future OpenTelemetry integration.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint . --ext .ts",
+    "test": "jest",
+    "prepare": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Nuvix-Tech/telemetry.git"
+  },
+  "keywords": [
+    "telemetry",
+    "monitoring",
+    "performance",
+    "tracing",
+    "logging",
+    "exporters",
+    "observability"
+  ],
+  "author": "Nuvix",
+  "license": "BSD-3-Clause",
+  "dependencies": {
+    "perf_hooks": "^1.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "eslint": "^8.55.0",
+    "jest": "^29.7.0",
+    "@types/jest": "^29.5.0"
+  }
+}
