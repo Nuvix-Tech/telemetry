@@ -33,5 +33,5 @@ export interface Adapter {
     advisory?: any[]
   ): UpDownCounter;
 
-  collect(): boolean;
+  collect(): Promise<boolean>;
 }

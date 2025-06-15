@@ -1,2 +1,2 @@
 export * from "./CustomTelemetry";
-export * from "./None";
+export * from "./none";

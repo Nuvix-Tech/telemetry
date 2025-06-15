@@ -33,7 +33,7 @@ export class None implements Adapter {
     };
   }
 
-  public collect(): boolean {
+  public async collect(): Promise<boolean> {
     return true;
   }
 }
