@@ -1,2 +1,2 @@
-export * from "./CustomTelemetry";
+export * from "./open-telemetry";
 export * from "./none";
