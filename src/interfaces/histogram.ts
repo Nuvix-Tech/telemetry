@@ -1,4 +1,3 @@
-
 export interface Histogram {
-    record(amount: number, attributes?: Record<string, any>): void;
+  record(amount: number, attributes?: Record<string, any>): void;
 }

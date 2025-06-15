@@ -29,32 +29,32 @@ const telemetry = new OpenTelemetry(
   "http://localhost:4318/v1/metrics", // OTLP endpoint
   "my-service-namespace",
   "my-service",
-  "instance-1"
+  "instance-1",
 );
 
 // Create different metric types
 const requestCounter = telemetry.createCounter(
   "http_requests_total",
   "requests",
-  "Total number of HTTP requests"
+  "Total number of HTTP requests",
 );
 
 const responseTimeHistogram = telemetry.createHistogram(
   "http_request_duration_ms",
   "ms",
-  "HTTP request duration in milliseconds"
+  "HTTP request duration in milliseconds",
 );
 
 const activeConnectionsGauge = telemetry.createGauge(
   "active_connections",
   "connections",
-  "Number of active connections"
+  "Number of active connections",
 );
 
 const queueSizeUpDownCounter = telemetry.createUpDownCounter(
   "queue_size",
   "items",
-  "Number of items in queue"
+  "Number of items in queue",
 );
 
 // Record metrics
@@ -84,41 +84,65 @@ await telemetry.collect(); // Always returns true
 
 ## � Available Adapters
 
-| Adapter       | Description                                           | Use Case                    |
-|---------------|-------------------------------------------------------|-----------------------------|
-| `OpenTelemetry` | Full OpenTelemetry integration with OTLP HTTP exporter | Production monitoring       |
-| `None`        | No-op adapter that discards all metrics              | Testing/disabled telemetry  |
+| Adapter         | Description                                            | Use Case                   |
+| --------------- | ------------------------------------------------------ | -------------------------- |
+| `OpenTelemetry` | Full OpenTelemetry integration with OTLP HTTP exporter | Production monitoring      |
+| `None`          | No-op adapter that discards all metrics                | Testing/disabled telemetry |
 
 ## 📊 Metric Types
 
 The library supports all standard OpenTelemetry metric types:
 
 ### Counter
+
 Monotonically increasing values (e.g., request count, error count).
+
 ```typescript
-const counter = adapter.createCounter("requests_total", "requests", "Total requests");
+const counter = adapter.createCounter(
+  "requests_total",
+  "requests",
+  "Total requests",
+);
 counter.add(1, { endpoint: "/api/data" });
 ```
 
 ### Histogram
+
 Statistical distribution of values (e.g., request duration, response size).
+
 ```typescript
-const histogram = adapter.createHistogram("request_duration", "ms", "Request duration");
+const histogram = adapter.createHistogram(
+  "request_duration",
+  "ms",
+  "Request duration",
+);
 histogram.record(123.45, { method: "POST" });
 ```
 
 ### Gauge
+
 Point-in-time values that can go up or down (e.g., memory usage, temperature).
+
 ```typescript
-const gauge = adapter.createGauge("memory_usage", "bytes", "Current memory usage");
+const gauge = adapter.createGauge(
+  "memory_usage",
+  "bytes",
+  "Current memory usage",
+);
 gauge.record(1024 * 1024 * 512); // 512MB
 ```
 
 ### UpDownCounter
+
 Values that can increase or decrease (e.g., active connections, queue size).
+
 ```typescript
-const upDownCounter = adapter.createUpDownCounter("active_sessions", "sessions", "Active user sessions");
-upDownCounter.add(1);  // User logged in
+const upDownCounter = adapter.createUpDownCounter(
+  "active_sessions",
+  "sessions",
+  "Active user sessions",
+);
+upDownCounter.add(1); // User logged in
 upDownCounter.add(-1); // User logged out
 ```
 
@@ -134,8 +158,9 @@ The library uses an adapter pattern to provide a unified interface for different
 ```
 
 The `Adapter` interface defines methods for creating different metric types:
+
 - `createCounter()` - For monotonically increasing values
-- `createHistogram()` - For statistical distributions  
+- `createHistogram()` - For statistical distributions
 - `createGauge()` - For point-in-time measurements
 - `createUpDownCounter()` - For values that can increase/decrease
 - `collect()` - For triggering metric collection
@@ -160,8 +185,9 @@ npm run test
 ```
 
 The build process generates:
+
 - `dist/index.cjs.js` - CommonJS build
-- `dist/index.esm.js` - ES modules build  
+- `dist/index.esm.js` - ES modules build
 - `dist/index.d.ts` - TypeScript declarations
 - Source maps for both builds
 
@@ -185,4 +211,3 @@ Licensed under the BSD 3-Clause License.
 ## ✨ Contributing
 
 Feel free to open an issue or PR! 🚀
-

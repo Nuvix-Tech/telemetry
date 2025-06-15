@@ -1,23 +1,23 @@
-import resolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
-import typescript from '@rollup/plugin-typescript';
-import dts from 'rollup-plugin-dts';
+import resolve from "@rollup/plugin-node-resolve";
+import commonjs from "@rollup/plugin-commonjs";
+import typescript from "@rollup/plugin-typescript";
+import dts from "rollup-plugin-dts";
 
 const external = [
-  '@opentelemetry/api',
-  '@opentelemetry/sdk-metrics',
-  '@opentelemetry/exporter-otlp-http',
-  '@opentelemetry/resources',
-  '@opentelemetry/semantic-conventions'
+  "@opentelemetry/api",
+  "@opentelemetry/sdk-metrics",
+  "@opentelemetry/exporter-otlp-http",
+  "@opentelemetry/resources",
+  "@opentelemetry/semantic-conventions",
 ];
 
 export default [
   // ESM build
   {
-    input: 'src/index.ts',
+    input: "src/index.ts",
     output: {
-      file: 'dist/index.esm.js',
-      format: 'esm',
+      file: "dist/index.esm.js",
+      format: "esm",
       sourcemap: true,
     },
     external,
@@ -25,7 +25,7 @@ export default [
       resolve(),
       commonjs(),
       typescript({
-        tsconfig: './tsconfig.build.json',
+        tsconfig: "./tsconfig.build.json",
         declaration: false,
         declarationMap: false,
       }),
@@ -33,19 +33,19 @@ export default [
   },
   // CommonJS build
   {
-    input: 'src/index.ts',
+    input: "src/index.ts",
     output: {
-      file: 'dist/index.cjs.js',
-      format: 'cjs',
+      file: "dist/index.cjs.js",
+      format: "cjs",
       sourcemap: true,
-      exports: 'named',
+      exports: "named",
     },
     external,
     plugins: [
       resolve(),
       commonjs(),
       typescript({
-        tsconfig: './tsconfig.build.json',
+        tsconfig: "./tsconfig.build.json",
         declaration: false,
         declarationMap: false,
       }),
@@ -53,10 +53,10 @@ export default [
   },
   // TypeScript declarations
   {
-    input: 'src/index.ts',
+    input: "src/index.ts",
     output: {
-      file: 'dist/index.d.ts',
-      format: 'esm',
+      file: "dist/index.d.ts",
+      format: "esm",
     },
     external,
     plugins: [dts()],

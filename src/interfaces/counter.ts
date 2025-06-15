@@ -1,3 +1,3 @@
 export interface Counter {
-    add(amount: number, attributes?: Record<string, any>): void;
+  add(amount: number, attributes?: Record<string, any>): void;
 }
