@@ -1,24 +1,37 @@
-import { TelemetryAdapter } from "./interfaces/adapter";
-import { TelemetryExporter } from "./interfaces/exporter";
+import { Counter } from "./interfaces/counter";
+import { Gauge } from "./interfaces/gauge";
+import { Histogram } from "./interfaces/histogram";
+import { UpDownCounter } from "./interfaces/up-down-counter";
 
-export class BaseTelemetry implements TelemetryAdapter {
-  protected exporters: TelemetryExporter[];
 
-  constructor(exporters: TelemetryAdapter[] = []) {
-    this.exporters = exporters;
-  }
+export interface Adapter {
+  createCounter(
+    name: string,
+    unit?: string | null,
+    description?: string | null,
+    advisory?: any[]
+  ): Counter;
 
-  record(event: string, duration: number, metadata: Record<string, any> = {}): void {
-    for (const exporter of this.exporters) {
-      exporter.record(event, duration, metadata);
-    }
-  }
+  createHistogram(
+    name: string,
+    unit?: string | null,
+    description?: string | null,
+    advisory?: any[]
+  ): Histogram;
 
-  async flush(): Promise<void> {
-    for (const exporter of this.exporters) {
-      if (exporter.flush) {
-        await exporter.flush();
-      }
-    }
-  }
+  createGauge(
+    name: string,
+    unit?: string | null,
+    description?: string | null,
+    advisory?: any[]
+  ): Gauge;
+
+  createUpDownCounter(
+    name: string,
+    unit?: string | null,
+    description?: string | null,
+    advisory?: any[]
+  ): UpDownCounter;
+
+  collect(): boolean;
 }
