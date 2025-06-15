@@ -1,8 +1,8 @@
 {
   "name": "@nuvix/telemetry",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.1",
   "type": "module",
-  "description": "A lightweight and extensible telemetry system with support for multiple exporters and future OpenTelemetry integration.",
+  "description": "A lightweight and extensible telemetry system with adapter-based architecture for collecting performance metrics, supporting OpenTelemetry integration and multiple telemetry backends.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
